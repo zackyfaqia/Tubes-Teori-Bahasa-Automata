@@ -14,306 +14,305 @@
 <py-script>
     import string
 
-        '''Lexical Func'''
-        def lexical(sentence, check):
-            print("L E X I C A L")
-            print(" ")
+    #Lexical Func
+    def lexical(sentence, check):
+        print("L E X I C A L")
+        print(" ")
 
-            # initialization
-            alphabet_list = list(string.ascii_lowercase)
-            state_list = ['q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q17', 'q18', 'q19', 'q20',
-                        'q21', 'q22', 'q23', 'q24', 'q25', 'q26', 'q27', 'q28', 'q29', 'q31', 'q32', 'q33', 'q34', 'q35', 'q36', 'q37', 'q38', 'q39', 'q40', 'q41', 'q42', 'q43', 'q44', 'q45', 'q46', 'q47', 'q48', 'q49', 'q50', 'q51']
+        # initialization
+        alphabet_list = list(string.ascii_lowercase)
+        state_list = ['q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q17', 'q18', 'q19', 'q20',
+                      'q21', 'q22', 'q23', 'q24', 'q25', 'q26', 'q27', 'q28', 'q29', 'q31', 'q32', 'q33', 'q34', 'q35', 'q36', 'q37', 'q38', 'q39', 'q40', 'q41', 'q42', 'q43', 'q44', 'q45', 'q46', 'q47', 'q48', 'q49', 'q50', 'q51']
 
-            transition_table = {}
+        transition_table = {}
 
-            for state in state_list:
-                for alphabet in alphabet_list:
-                    transition_table[(state, alphabet)] = "error"
-                transition_table[(state, "#")] = "error"
-                transition_table[(state, " ")] = "error"
+        for state in state_list:
+            for alphabet in alphabet_list:
+                transition_table[(state, alphabet)] = "error"
+            transition_table[(state, "#")] = "error"
+            transition_table[(state, " ")] = "error"
 
-            # start state
-            transition_table["q0", " "] = "q0"
+        # start state
+        transition_table["q0", " "] = "q0"
 
-            # finish state
-            transition_table[("q6", "#")] = "accepted"
-            transition_table[("q6", " ")] = "q7"
+        # finish state
+        transition_table[("q6", "#")] = "accepted"
+        transition_table[("q6", " ")] = "q7"
 
-            transition_table[("q7", "#")] = "accepted"
-            transition_table[("q7", " ")] = "q7"
+        transition_table[("q7", "#")] = "accepted"
+        transition_table[("q7", " ")] = "q7"
 
-            # string makcik
-            transition_table[('q0', 'm')] = 'q1'
-            transition_table[('q1', 'a')] = 'q2'
-            transition_table[('q2', 'k')] = 'q3'
-            transition_table[('q3', 'c')] = 'q4'
-            transition_table[('q4', 'i')] = 'q5'
-            transition_table[('q5', 'k')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 'm')] = 'q1'
+        # string makcik
+        transition_table[('q0', 'm')] = 'q1'
+        transition_table[('q1', 'a')] = 'q2'
+        transition_table[('q2', 'k')] = 'q3'
+        transition_table[('q3', 'c')] = 'q4'
+        transition_table[('q4', 'i')] = 'q5'
+        transition_table[('q5', 'k')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 'm')] = 'q1'
 
-            # string menunggang
-            transition_table[('q0', 'm')] = 'q1'
-            transition_table[('q1', 'e')] = 'q8'
-            transition_table[('q8', 'n')] = 'q9'
-            transition_table[('q9', 'u')] = 'q10'
-            transition_table[('q10', 'n')] = 'q11'
-            transition_table[('q11', 'g')] = 'q12'
-            transition_table[('q12', 'g')] = 'q13'
-            transition_table[('q13', 'a')] = 'q14'
-            transition_table[('q14', 'n')] = 'q15'
-            transition_table[('q15', 'g')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 'm')] = 'q1'
+        # string menunggang
+        transition_table[('q0', 'm')] = 'q1'
+        transition_table[('q1', 'e')] = 'q8'
+        transition_table[('q8', 'n')] = 'q9'
+        transition_table[('q9', 'u')] = 'q10'
+        transition_table[('q10', 'n')] = 'q11'
+        transition_table[('q11', 'g')] = 'q12'
+        transition_table[('q12', 'g')] = 'q13'
+        transition_table[('q13', 'a')] = 'q14'
+        transition_table[('q14', 'n')] = 'q15'
+        transition_table[('q15', 'g')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 'm')] = 'q1'
 
-            # string menaip
-            transition_table[('q0', 'm')] = 'q1'
-            transition_table[('q1', 'e')] = 'q8'
-            transition_table[('q8', 'n')] = 'q9'
-            transition_table[('q9', 'a')] = 'q16'
-            transition_table[('q16', 'i')] = 'q17'
-            transition_table[('q17', 'p')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 'm')] = 'q1'
+        # string menaip
+        transition_table[('q0', 'm')] = 'q1'
+        transition_table[('q1', 'e')] = 'q8'
+        transition_table[('q8', 'n')] = 'q9'
+        transition_table[('q9', 'a')] = 'q16'
+        transition_table[('q16', 'i')] = 'q17'
+        transition_table[('q17', 'p')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 'm')] = 'q1'
 
-            # string selipar
-            transition_table[('q0', 's')] = 'q18'
-            transition_table[('q18', 'e')] = 'q19'
-            transition_table[('q19', 'l')] = 'q20'
-            transition_table[('q20', 'i')] = 'q21'
-            transition_table[('q21', 'p')] = 'q22'
-            transition_table[('q22', 'a')] = 'q23'
-            transition_table[('q23', 'r')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 's')] = 'q18'
+        # string selipar
+        transition_table[('q0', 's')] = 'q18'
+        transition_table[('q18', 'e')] = 'q19'
+        transition_table[('q19', 'l')] = 'q20'
+        transition_table[('q20', 'i')] = 'q21'
+        transition_table[('q21', 'p')] = 'q22'
+        transition_table[('q22', 'a')] = 'q23'
+        transition_table[('q23', 'r')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 's')] = 'q18'
 
-            # string datuk
-            transition_table[('q0', 'd')] = 'q24'
-            transition_table[('q24', 'a')] = 'q25'
-            transition_table[('q25', 't')] = 'q26'
-            transition_table[('q26', 'u')] = 'q27'
-            transition_table[('q27', 'k')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 'd')] = 'q24'
+        # string datuk
+        transition_table[('q0', 'd')] = 'q24'
+        transition_table[('q24', 'a')] = 'q25'
+        transition_table[('q25', 't')] = 'q26'
+        transition_table[('q26', 'u')] = 'q27'
+        transition_table[('q27', 'k')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 'd')] = 'q24'
 
-            # string motosikal
-            transition_table[('q0', 'm')] = 'q1'
-            transition_table[('q1', 'o')] = 'q28'
-            transition_table[('q28', 't')] = 'q29'
-            transition_table[('q29', 'o')] = 'q30'
-            transition_table[('q30', 's')] = 'q31'
-            transition_table[('q31', 'i')] = 'q32'
-            transition_table[('q32', 'k')] = 'q33'
-            transition_table[('q33', 'a')] = 'q34'
-            transition_table[('q34', 'l')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 'm')] = 'q1'
+        # string motosikal
+        transition_table[('q0', 'm')] = 'q1'
+        transition_table[('q1', 'o')] = 'q28'
+        transition_table[('q28', 't')] = 'q29'
+        transition_table[('q29', 'o')] = 'q30'
+        transition_table[('q30', 's')] = 'q31'
+        transition_table[('q31', 'i')] = 'q32'
+        transition_table[('q32', 'k')] = 'q33'
+        transition_table[('q33', 'a')] = 'q34'
+        transition_table[('q34', 'l')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 'm')] = 'q1'
 
-            # string bercakap
-            transition_table[('q0', 'b')] = 'q35'
-            transition_table[('q35', 'e')] = 'q36'
-            transition_table[('q36', 'r')] = 'q37'
-            transition_table[('q37', 'c')] = 'q38'
-            transition_table[('q38', 'a')] = 'q39'
-            transition_table[('q39', 'k')] = 'q40'
-            transition_table[('q40', 'a')] = 'q41'
-            transition_table[('q41', 'p')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 'b')] = 'q35'
+        # string bercakap
+        transition_table[('q0', 'b')] = 'q35'
+        transition_table[('q35', 'e')] = 'q36'
+        transition_table[('q36', 'r')] = 'q37'
+        transition_table[('q37', 'c')] = 'q38'
+        transition_table[('q38', 'a')] = 'q39'
+        transition_table[('q39', 'k')] = 'q40'
+        transition_table[('q40', 'a')] = 'q41'
+        transition_table[('q41', 'p')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 'b')] = 'q35'
 
-            # string surat
-            transition_table[('q0', 's')] = 'q18'
-            transition_table[('q18', 'u')] = 'q42'
-            transition_table[('q42', 'r')] = 'q43'
-            transition_table[('q43', 'a')] = 'q44'
-            transition_table[('q44', 't')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 's')] = 'q18'
+        # string surat
+        transition_table[('q0', 's')] = 'q18'
+        transition_table[('q18', 'u')] = 'q42'
+        transition_table[('q42', 'r')] = 'q43'
+        transition_table[('q43', 'a')] = 'q44'
+        transition_table[('q44', 't')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 's')] = 'q18'
 
-            # string saye
-            transition_table[('q0', 's')] = 'q18'
-            transition_table[('q18', 'a')] = 'q45'
-            transition_table[('q45', 'y')] = 'q46'
-            transition_table[('q46', 'e')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 's')] = 'q18'
+        # string saye
+        transition_table[('q0', 's')] = 'q18'
+        transition_table[('q18', 'a')] = 'q45'
+        transition_table[('q45', 'y')] = 'q46'
+        transition_table[('q46', 'e')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 's')] = 'q18'
 
-            # string pakcik
-            transition_table[('q0', 'p')] = 'q47'
-            transition_table[('q47', 'a')] = 'q48'
-            transition_table[('q48', 'k')] = 'q49'
-            transition_table[('q49', 'c')] = 'q50'
-            transition_table[('q50', 'i')] = 'q51'
-            transition_table[('q51', 'k')] = 'q6'
-            transition_table[('q6', ' ')] = 'q7'
-            transition_table[('q7', 'p')] = 'q47'
+        # string pakcik
+        transition_table[('q0', 'p')] = 'q47'
+        transition_table[('q47', 'a')] = 'q48'
+        transition_table[('q48', 'k')] = 'q49'
+        transition_table[('q49', 'c')] = 'q50'
+        transition_table[('q50', 'i')] = 'q51'
+        transition_table[('q51', 'k')] = 'q6'
+        transition_table[('q6', ' ')] = 'q7'
+        transition_table[('q7', 'p')] = 'q47'
 
-            # lexical analysis
-            print()
-            idx_char = 0
-            state = 'q0'
-            current_token = ''
+        # lexical analysis
+        print()
+        idx_char = 0
+        state = 'q0'
+        current_token = ''
 
-            print("Input terbaru : " + sentence)
-            print(" ")
+        print("Input terbaru : " + sentence)
+        print(" ")
 
-            while state != 'accepted':
-                current_char = input_string[idx_char]
-                current_token += current_char
-                state = transition_table[(state, current_char)]
-                if state == 'q6':
-                    print('current token        : ' + current_token + ', valid')
-                    current_token = ''
-                    check = True
-                if state == "error":
-                    print("Input Tidak Valid!")
-                    check = False
-                    print(" ")
-                    break
-                idx_char += 1
-
-            # conclusion
-            if state == "accepted":
-                print('\nsemua token diinput  : ' + sentence + ', valid')
+        while state != 'accepted':
+            current_char = input_string[idx_char]
+            current_token += current_char
+            state = transition_table[(state, current_char)]
+            if state == 'q6':
+                print('current token        : ' + current_token + ', valid')
+                current_token = ''
                 check = True
+            if state == "error":
+                print("Input Tidak Valid!")
+                check = False
+                print(" ")
+                break
+            idx_char = idx_char + 1
 
-            return check
+        # conclusion
+        if state == "accepted":
+            print('\nsemua token diinput  : ' + sentence + ', valid')
+            check = True
 
-        '''Parser Func'''
-        def parser(sentence, check):
-            if check:
-                print("\n")
-                print("                            P A R S E R                            ")
-                print("  ")
+        return check
 
-                tokens = sentence.lower().split()
-                tokens.append('EOS')
+    #Parser Func
+    def parser(sentence, check):
+        if check:
+            print("\n")
+            print("                            P A R S E R                            ")
+            print(" ")
 
-                non_terminals = ['S', 'NN', 'VB', 'OB']
-                test = ['NN', 'VB', 'OB']
-                tError = ['error']
-                terminals = ['saye', 'datuk', 'makcik', 'pakcik', 'menaip',
-                            'bercakap', 'menunggang', 'buku', 'selipar', 'surat', 'motosikal']
+            tokens = sentence.lower().split()
+            tokens.append('EOS')
 
-                parse_table = {}
+            non_terminals = ['S', 'NN', 'VB', 'OB']
+            test = ['NN', 'VB', 'OB']
+            tError = ['error']
+            terminals = ['saye', 'datuk', 'makcik', 'pakcik', 'menaip',
+                         'bercakap', 'menunggang', 'buku', 'selipar', 'surat', 'motosikal']
 
-                parse_table[('S', 'saye')] = test
-                parse_table[('S', 'datuk')] = test
-                parse_table[('S', 'makcik')] = test
-                parse_table[('S', 'pakcik')] = test
-                parse_table[('S', 'menaip')] = tError
-                parse_table[('S', 'bercakap')] = tError
-                parse_table[('S', 'menunggang')] = tError
-                parse_table[('S', 'buku')] = test
-                parse_table[('S', 'selipar')] = test
-                parse_table[('S', 'surat')] = test
-                parse_table[('S', 'motosikal')] = test
-                parse_table[('S', 'EOS')] = tError
+            parse_table = {}
 
-                parse_table[('NN', 'saye')] = ['saye']
-                parse_table[('NN', 'datuk')] = ['datuk']
-                parse_table[('NN', 'makcik')] = ['makcik']
-                parse_table[('NN', 'pakcik')] = ['pakcik']
-                parse_table[('NN', 'menaip')] = tError
-                parse_table[('NN', 'bercakap')] = tError
-                parse_table[('NN', 'menunggang')] = tError
-                parse_table[('NN', 'buku')] = tError
-                parse_table[('NN', 'selipar')] = tError
-                parse_table[('NN', 'surat')] = tError
-                parse_table[('NN', 'motosikal')] = tError
-                parse_table[('NN', 'EOS')] = tError
+            parse_table[('S', 'saye')] = test
+            parse_table[('S', 'datuk')] = test
+            parse_table[('S', 'makcik')] = test
+            parse_table[('S', 'pakcik')] = test
+            parse_table[('S', 'menaip')] = tError
+            parse_table[('S', 'bercakap')] = tError
+            parse_table[('S', 'menunggang')] = tError
+            parse_table[('S', 'buku')] = test
+            parse_table[('S', 'selipar')] = test
+            parse_table[('S', 'surat')] = test
+            parse_table[('S', 'motosikal')] = test
+            parse_table[('S', 'EOS')] = tError
 
-                parse_table[('VB', 'saye')] = tError
-                parse_table[('VB', 'datuk')] = tError
-                parse_table[('VB', 'makcik')] = tError
-                parse_table[('VB', 'pakcik')] = tError
-                parse_table[('VB', 'menaip')] = ['menaip']
-                parse_table[('VB', 'bercakap')] = ['bercakap']
-                parse_table[('VB', 'menunggang')] = ['menunggang']
-                parse_table[('VB', 'buku')] = tError
-                parse_table[('VB', 'selipar')] = tError
-                parse_table[('VB', 'surat')] = tError
-                parse_table[('VB', 'motosikal')] = tError
-                parse_table[('VB', 'EOS')] = tError
+            parse_table[('NN', 'saye')] = ['saye']
+            parse_table[('NN', 'datuk')] = ['datuk']
+            parse_table[('NN', 'makcik')] = ['makcik']
+            parse_table[('NN', 'pakcik')] = ['pakcik']
+            parse_table[('NN', 'menaip')] = tError
+            parse_table[('NN', 'bercakap')] = tError
+            parse_table[('NN', 'menunggang')] = tError
+            parse_table[('NN', 'buku')] = tError
+            parse_table[('NN', 'selipar')] = tError
+            parse_table[('NN', 'surat')] = tError
+            parse_table[('NN', 'motosikal')] = tError
+            parse_table[('NN', 'EOS')] = tError
 
-                parse_table[('OB', 'saye')] = tError
-                parse_table[('OB', 'datuk')] = tError
-                parse_table[('OB', 'makcik')] = tError
-                parse_table[('OB', 'pakcik')] = tError
-                parse_table[('OB', 'menaip')] = tError
-                parse_table[('OB', 'bercakap')] = tError
-                parse_table[('OB', 'menunggang')] = tError
-                parse_table[('OB', 'buku')] = ['buku']
-                parse_table[('OB', 'selipar')] = ['selipar']
-                parse_table[('OB', 'surat')] = ['surat']
-                parse_table[('OB', 'motosikal')] = ['motosikal']
-                parse_table[('OB', 'EOS')] = tError
+            parse_table[('VB', 'saye')] = tError
+            parse_table[('VB', 'datuk')] = tError
+            parse_table[('VB', 'makcik')] = tError
+            parse_table[('VB', 'pakcik')] = tError
+            parse_table[('VB', 'menaip')] = ['menaip']
+            parse_table[('VB', 'bercakap')] = ['bercakap']
+            parse_table[('VB', 'menunggang')] = ['menunggang']
+            parse_table[('VB', 'buku')] = tError
+            parse_table[('VB', 'selipar')] = tError
+            parse_table[('VB', 'surat')] = tError
+            parse_table[('VB', 'motosikal')] = tError
+            parse_table[('VB', 'EOS')] = tError
 
-                stack = []
-                stack.append('#')
-                stack.append('S')
+            parse_table[('OB', 'saye')] = tError
+            parse_table[('OB', 'datuk')] = tError
+            parse_table[('OB', 'makcik')] = tError
+            parse_table[('OB', 'pakcik')] = tError
+            parse_table[('OB', 'menaip')] = tError
+            parse_table[('OB', 'bercakap')] = tError
+            parse_table[('OB', 'menunggang')] = tError
+            parse_table[('OB', 'buku')] = ['buku']
+            parse_table[('OB', 'selipar')] = ['selipar']
+            parse_table[('OB', 'surat')] = ['surat']
+            parse_table[('OB', 'motosikal')] = ['motosikal']
+            parse_table[('OB', 'EOS')] = tError
 
-                index_token = 0
-                symbol = tokens[index_token]
+            stack = []
+            stack.append('#')
+            stack.append('S')
 
-                while(len(stack) > 0):
-                    top = stack[len(stack) - 1]
+            index_token = 0
+            symbol = tokens[index_token]
 
-                    print("top = " + top)
-                    print("symbol = " + symbol)
+            while(len(stack) > 0):
+                top = stack[len(stack) - 1]
 
-                    if top in terminals:
-                        print('top adalah simbol terminal')
+                print("top = " + top)
+                print("symbol = " + symbol)
 
-                        if top == symbol:
+                if top in terminals:
+                    print('top adalah simbol terminal')
+
+                    if top == symbol:
+                        stack.pop()
+                        index_token = index_token + 1
+                        symbol = tokens[index_token]
+
+                        if symbol == "EOS":
                             stack.pop()
-                            index_token = index_token + 1
-                            symbol = tokens[index_token]
-
-                            if symbol == "EOS":
-                                stack.pop()
-                                print('isi stack:', stack)
-
-                        else:
-                            print('error')
-                            break
-
-                    elif top in non_terminals:
-                        print('top adalah symbol non-terminal')
-
-                        if parse_table[(top, symbol)][0] != 'error':
-                            stack.pop()
-                            symbol_to_be_pushed = parse_table[(top, symbol)]
-
-                            for i in range(len(symbol_to_be_pushed)-1, -1, -1):
-                                stack.append(symbol_to_be_pushed[i])
-
-                        else:
-                            print('error')
-                            break
+                            print('isi stack:', stack)
 
                     else:
                         print('error')
                         break
 
-                    print('isi stack: ', stack)
-                    print(" ")
+                elif top in non_terminals:
+                    print('top adalah symbol non-terminal')
 
-                if symbol == 'EOS' and len(stack) == 0:
-                    print('input string : ' + '"' + sentence +
-                        '"' + ', diterima, sesuai grammar')
+                    if parse_table[(top, symbol)][0] != 'error':
+                        stack.pop()
+                        symbol_to_be_pushed = parse_table[(top, symbol)]
+
+                        for i in range(len(symbol_to_be_pushed)-1, -1, -1):
+                            stack.append(symbol_to_be_pushed[i])
+
+                    else:
+                        print('error')
+                        break
 
                 else:
-                    print(" ")
-                    print('error', 'input string:' + '"' + sentence +
-                        '"' + ', tidak diterima, tidak sesuai grammar')
+                    print('error')
+                    break
+
+                print('isi stack: ', stack)
+                print("")
+
+            if symbol == 'EOS' and len(stack) == 0:
+                print('input string : ' + '"' + sentence +
+                      '"' + ', diterima, sesuai grammar')
+
             else:
-                pass
+                print("")
+                print('error', 'input string:' + '"' + sentence +
+                      '"' + ', tidak diterima, tidak sesuai grammar')
+        else:
+            pass
 
-            print("\n")
+        print("\n")
 
-            return parser
-
+        return parser
     
     '''   Main Program   ======================================================================================================'''
     check = False
